@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamilton Path</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="title">Hamilton Path Problem Solver</div>
+    <div class="description">Hamiltonian Path is a path in a graph that visits every vertex exactly once.</div>
+
+    <div class="problem-controls">
+        <h3 class="description">Select difficulty:</h3>
+        <select id="difficulty" class="dropdown">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+        <button id="getProblem" class="button">Get Problem</button>
+    </div>
+
+    <div class="problem-area">
+        <div class="problem-description" id="problemDescription">Problem Description</div>
+        <div class="graph-container" id="graph">
+            <!-- graph from js-->
+        </div>
+        <div class="solution-controls">
+            <input type="text" id="solution" placeholder="Enter path (e.g., ABCD)" class="input">
+            <button id="submitSolution" class="button">Submit Solution</button>
+            <div id="feedback" class="feedback"></div>
+            <button id="tryAnother" class="button hidden">Try Another Problem</button>
+        </div>
+    </div>    
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
