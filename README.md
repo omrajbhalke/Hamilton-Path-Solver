@@ -1,4 +1,4 @@
-# **Hamilton Path Solver**
+# **Hamilton Path Solver A Gamified Approach to Graph Theory**
 
 ## **Overview**
 Hamilton Path Solver is an interactive web application designed to help users explore and solve Hamilton Path problems in graph theory. It provides challenges at three difficulty levels: **Easy**, **Medium**, and **Hard**, making it suitable for learners of all skill levels. The project uses **HTML**, **CSS**, and **JavaScript** to deliver an engaging and user-friendly experience.
