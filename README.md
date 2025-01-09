@@ -32,11 +32,11 @@ Hamilton Path Solver is an interactive web application designed to help users ex
 ## **Installation and Usage**
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/yourusername/hamilton-path-solver.git
+   https://github.com/omrajbhalke/Hamilton-Path-Solver-A-Gamified-Approach-to-Graph-Theory.git
    ```
 2. Navigate to the project directory:  
    ```bash
-   cd hamilton-path-solver
+   cd Hamilton-Path-Solver-A-Gamified-Approach-to-Graph-Theory
    ```
 3. Open `index.html` in your web browser to start the application.
 
