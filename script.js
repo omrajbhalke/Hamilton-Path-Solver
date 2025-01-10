@@ -3,21 +3,54 @@ const problems = {
         {
             vertices: ['A', 'B', 'C', 'D'],
             edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'A'], ['A', 'C']],
-            solution: ['A', 'B', 'C', 'D']
+            solution: ['A', 'B', 'C', 'D'],
+            image: 'easy1.png' 
+        },
+        {
+            vertices: ['A', 'B', 'C'],
+            edges: [['A', 'B'], ['B', 'C'], ['C', 'A']],
+            solution: ['A', 'B', 'C'],
+            image: 'easy3.png' 
+        },
+        {
+            vertices: ['A', 'B', 'C', 'D'],
+            edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'A']],
+            solution: ['A', 'B', 'C', 'D'],
+            image: 'easy2.png' 
         }
     ],
     medium: [
         {
             vertices: ['A', 'B', 'C', 'D', 'E'],
             edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'E'], ['E', 'A'], ['A', 'C'], ['C', 'E']],
-            solution: ['A', 'B', 'C', 'D', 'E']
+            solution: ['A', 'B', 'C', 'D', 'E'],
+            image: 'medium1.png' 
+        },
+        {
+            vertices: ['A', 'B', 'C', 'D', 'E'],
+            edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'E'], ['E', 'A'], ['A', 'D'], ['B', 'E']],
+            solution: ['A', 'B', 'C', 'D', 'E'],
+            image: 'medium3.png' 
+        },
+        {
+            vertices: ['A', 'B', 'C', 'D', 'E'],
+            edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'E'], ['E', 'A'], ['A', 'D']],
+            solution: ['A', 'B', 'C', 'D', 'E'],
+            image: 'medium2.png' 
         }
     ],
     hard: [
         {
             vertices: ['A', 'B', 'C', 'D', 'E', 'F'],
             edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'E'], ['E', 'F'], ['F', 'A'], ['A', 'D'], ['B', 'E'], ['C', 'F']],
-            solution: ['A', 'B', 'C', 'D', 'E', 'F']
+            solution: ['A', 'B', 'C', 'D', 'E', 'F'],
+            image: 'hard1.png' 
+        },
+        {
+            vertices: ['A', 'B', 'C', 'D', 'E', 'F'],
+            edges: [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'E'], ['E', 'F'], ['F', 'A'], ['A', 'C'], ['B', 'E'], ['D', 'F']],
+            solution: ['A', 'B', 'C', 'D', 'E', 'F'],
+            image: 'hard2.png' 
         }
     ]
 };
@@ -26,7 +59,8 @@ let currentProblem = null;
 
 function getProblem() {
     const difficulty = document.getElementById('difficulty').value;
-    currentProblem = problems[difficulty][Math.floor(Math.random() * problems[difficulty].length)];
+    const randomIndex = Math.floor(Math.random() * problems[difficulty].length);
+    currentProblem = problems[difficulty][randomIndex]; 
     document.getElementById('problemDescription').textContent =
         `Find a Hamiltonian path in this ${difficulty} graph`;
     document.getElementById('solution').value = '';
@@ -35,7 +69,7 @@ function getProblem() {
 
     // Load the corresponding image
     const graphDiv = document.getElementById('graph');
-    graphDiv.innerHTML = `<img src="images/${difficulty}.png" alt="Graph">`; // Replace with actual image paths
+    graphDiv.innerHTML = `<img src="images/${currentProblem.image}" alt="Graph">`; 
 }
 
 function checkSolution() {
