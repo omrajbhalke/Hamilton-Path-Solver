@@ -1,4 +1,5 @@
 const problems = {
+    
     easy: [
         {
             vertices: ['A', 'B', 'C', 'D'],
