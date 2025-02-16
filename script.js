@@ -1,5 +1,4 @@
 const problems = {
-    
     easy: [
         {
             vertices: ['A', 'B', 'C', 'D'],
@@ -56,21 +55,27 @@ const problems = {
     ]
 };
 
-let currentProblem = null;
+let currentDifficulty = 'easy';
+let currentIndex = 0;
 
 function getProblem() {
-    const difficulty = document.getElementById('difficulty').value;
-    const randomIndex = Math.floor(Math.random() * problems[difficulty].length);
-    currentProblem = problems[difficulty][randomIndex]; 
-    document.getElementById('problemDescription').textContent =
-        `Find a Hamiltonian path in this ${difficulty} graph`;
-    document.getElementById('solution').value = '';
-    document.getElementById('feedback').textContent = '';
-    document.getElementById('tryAnother').classList.add('hidden');
+    const problemSet = problems[currentDifficulty];
+    if (currentIndex < problemSet.length) {
+        const problem = problemSet[currentIndex];
+        currentProblem = problem;
 
-    // Load the corresponding image
-    const graphDiv = document.getElementById('graph');
-    graphDiv.innerHTML = `<img src="images/${currentProblem.image}" alt="Graph">`; 
+        document.getElementById('problemDescription').textContent =
+            `Problem ${currentIndex + 1} in ${currentDifficulty} difficulty: Find a Hamiltonian path in this graph.`;
+
+        document.getElementById('solution').value = '';
+        document.getElementById('feedback').textContent = '';
+        document.getElementById('tryAnother').classList.add('hidden');
+
+        const graphDiv = document.getElementById('graph');
+        graphDiv.innerHTML = `<img src="images/${problem.image}" alt="Graph">`;
+    } else {
+        alert(`You have completed all problems in the ${currentDifficulty} difficulty!`);
+    }
 }
 
 function checkSolution() {
@@ -101,15 +106,23 @@ function checkSolution() {
     }
 
     if (isValid) {
-        feedback.textContent = `Correct! You found a valid Hamiltonian path! : ${userSolution}`;
+        feedback.textContent = `Correct! You found a valid Hamiltonian path! : ${userSolution.join('')}`;
         document.getElementById('tryAnother').classList.remove('hidden');
+        currentIndex++;
     } else {
         feedback.textContent = "Incorrect. The path must follow existing edges.";
     }
 }
 
-document.getElementById('getProblem').addEventListener('click', getProblem);
+document.getElementById('getProblem').addEventListener('click', () => {
+    const difficultySelect = document.getElementById('difficulty');
+    currentDifficulty = difficultySelect.value;
+    currentIndex = 0;
+    getProblem();
+});
+
 document.getElementById('submitSolution').addEventListener('click', checkSolution);
 document.getElementById('tryAnother').addEventListener('click', getProblem);
 
+// Initialize the first problem
 getProblem();
