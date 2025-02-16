@@ -6,9 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamilton Path</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        .question-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay-box {
+            background-color: #f5f5dc;
+            color: black;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .overlay-box h2 {
+            margin-top: 0;
+        }
+
+        .edge {
+            stroke-dasharray: 5;
+            animation: drawEdge 5s ease-in-out forwards;
+            stroke: white;
+        }
+
+        @keyframes drawEdge {
+            from {
+                stroke-dashoffset: 50;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
+    <div class="question-icon">
+        <i class="fa fa-question-circle" style="font-size: 48px; color: white" onclick="showOverlay()"></i>
+    </div>
 
     <div class="title">Hamilton Path Problem Solver</div>
     <div class="description">Hamiltonian Path is a path in a graph that visits every vertex exactly once.</div>
@@ -34,7 +91,48 @@
             <div id="feedback" class="feedback"></div>
             <button id="tryAnother" class="button hidden">Try Another Problem</button>
         </div>
-    </div>    
+    </div>
+
+    <div class="navigate">
+        <button class="button navlink">
+            <a title="Click to go back to home page" class="navlink" href="../navigate.html">Home Page</a>
+        </button>
+    </div>
+
+    <!-- Help Overlay -->
+    <div class="overlay" id="helpOverlay" onclick="hideOverlay(event)">
+        <div class="overlay-box" onclick="event.stopPropagation()">
+            <h2>How to Play the Hamilton Path Game</h2>
+            <p><strong>Objective:</strong> Determine if the given graph contains a Hamiltonian path. A Hamiltonian path is a path in a graph that visits every vertex exactly once.</p>
+            <p><strong>Steps to Play:</strong></p>
+            <ul>
+                <li><strong>Choose a Graph:</strong> Select a graph by clicking on one of the Graph options.</li>
+                <li><strong>Set Difficulty:</strong> Pick the desired difficulty level.</li>
+                <li><strong>Enter the Path:</strong> Use the input box to enter the path you believe is a Hamiltonian path. The path should be a sequence of vertices separated by commas (e.g., A,B,C,D).</li>
+                <li><strong>Submit Your Answer:</strong> Click the "Submit Solution" button to check if your path is a Hamiltonian path.</li>
+                <li><strong>Get Feedback:</strong> The feedback box will inform you if your answer is correct or incorrect. Try again if needed!</li>
+                <li><strong>Try Another Problem:</strong> Click the "Try Another Problem" button to get a new graph and start fresh.</li>
+            </ul>
+            <p><strong>Tips:</strong></p>
+            <ul>
+                <li>Look for paths that visit every vertex exactly once.</li>
+                <li>Experiment with different graphs and difficulties to improve your understanding of Hamiltonian paths.</li>
+                <li>Use the graph visualization to help you find and verify the path.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showOverlay() {
+            document.getElementById("helpOverlay").style.display = "flex";
+        }
+
+        function hideOverlay(event) {
+            if (event.target.id === "helpOverlay") {
+                document.getElementById("helpOverlay").style.display = "none";
+            }
+        }
+    </script>
 
     <script src="script.js"></script>
 
